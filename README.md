@@ -1,37 +1,61 @@
-# PacketVoyager: Advanced Traffic Analysis System
+# Packet Voyager: Intelligence-Driven Traffic Analyzer
 
-## Short Description
-A professional-grade Network Traffic Analysis & Forensic System with a real-time Web Dashboard.
+An advanced, real-time network packet sniffer and behavioral analysis dashboard. Packet Voyager goes beyond raw data capture, providing deep insights into service identification and micro-anomaly detection.
 
-## Brief Description
-PacketVoyager is a robust network inspection tool that bridges the gap between simple scripts and full forensic suites like Wireshark. It captures live network traffic, extracts deep metadata from non-encrypted HTTP packets, and visualizes everything in a sleek, real-time dashboard. 
+## 🚀 Key Features
 
-**Key Features:**
-- **Real-time Web UI**: Monitor traffic, statistics, and protocol distribution via a modern dashboard.
-- **Wireshark Integration**: Automatically saves all captured traffic to `capture_history.pcap`.
-- **Deep Packet Inspection**: Extracts User-Agents, Hosts, Paths, and Raw Payloads.
-- **Traffic Statistics**: Visualizes bandwidth usage and protocol breakdowns.
-- **High Performance**: Uses an asynchronous event-driven engine for optimal packet processing.
+### 🛡️ Behavioral Threat Engine
+- **Heuristic Risk Assessment**: Automatically flags traffic as SAFE, WARN, or CRITICAL based on behavioral patterns.
+- **ARP Poisoning Detection**: Real-time monitoring of the ARP table to detect Man-in-the-Middle attacks.
+- **Port Scan Intelligence**: Detects and flags scanning behavior when a single source probes high-density service nodes.
+- **Credential Scanner**: Scans unencrypted HTTP traffic for visible sensitive keywords like `login`, `pass`, or `token`.
 
-## Tools Used
-- **Scapy**: Core engine for packet manipulation and parsing.
-- **Flask & Socket.io**: Web backbone for real-time data streaming.
-- **HTML5/TailwindCSS**: Premium UI design with glassmorphism.
-- **Wireshark**: Recommended for analyzing the exported `.pcap` files.
+### 🌐 Service Intelligence (DPI-Lite)
+- **Deep Service Correlation**: Identifies well-known platforms (Google Cloud, Meta AI, OpenAI, Netflix, etc.) by correlating DNS queries and TLS SNI handshakes.
+- **Protocol Distribution**: Live visual density chart showing the ratio of HTTP, HTTPS, DNS, TCP, and UDP traffic.
 
+### 🖥️ Dashboard & UX
+- **Glassmorphic UI**: High-end modern dashboard with real-time "Network Pulse" throughput charts.
+- **Signal Stream Dissector**: A high-speed packet stream with adaptive filtering (e.g., type "CRITICAL" to see only threats).
+- **Forensic Hub**: An inspection sidebar for deep-diving into raw packet payloads and internal risk signatures.
 
-## How to Implement
-1.  **Setup**: Install Python and the `scapy` library. Ensure Npcap (Windows) or libpcap (Linux) is installed.
-2.  **Coding**:
-    - **Easy Run**: Double-click `run.bat` (Run as Administrator) to start sniffing on the default interface.
-    - **Manual**:
-        - Import `scapy.all`.
-        - Use `sniff()` function with a callback (`prn`) to process packets.
-        - Apply a BPF filter `tcp port 80` to isolate HTTP traffic.
-3.  **Parsing**: inside the callback, check for `Raw` layers or HTTP-specific layers to extract headers.
-4.  **Logging**: Write the extracted details to a file.
+---
 
-## Tips
-- **Promiscuous Mode**: Ensure your network adapter supports promiscuous mode. On Wi-Fi, this might be restricted by the hardware or driver.
-- **Permissions**: Sniffing requires administrative (root/Administrator) privileges.
-- **Filtering**: Use BPF filters (Berkley Packet Filter) effectively to reduce the load and focus on relevant traffic.
+## 🛠️ Technical Setup
+
+### Prerequisites
+- **Python 3.8+**
+- **Npcap (Windows)** or **libpcap (Linux/macOS)**: Required for raw packet capture.
+- **Admin Privileges**: Must be run in a session with Administrator/Root rights to access network hardware.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/RATNAKIRAN93/hh8-minor-project-2.git
+   cd hh8-minor-project-2
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Execution
+1. Right-click your terminal (cmd/Powershell) and select **"Run as Administrator"**.
+2. Start the server:
+   ```bash
+   python app.py
+   ```
+3. Open your browser to **[http://127.0.0.1:5001](http://127.0.0.1:5001)**.
+
+---
+
+## 📜 Project Structure
+- `app.py`: Flask-SocketIO server and API gateway.
+- `sniffer_engine.py`: Core Scapy-based capture engine and risk analysis logic.
+- `templates/index.html`: Fully custom dashboard with Chart.js and Tailwind CSS.
+- `requirements.txt`: Project dependencies (scapy, flask, flask-socketio).
+
+---
+
+**Disclaimer**: This tool is for educational and network diagnostic purposes only. Ensure you have explicit permission before capturing traffic on any network.
