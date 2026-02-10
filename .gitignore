@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pcap
+*.txt
+*.log
+.vscode/
+venv/
+.env
+diagnostic.py
+verify_sniffer.py
+query
